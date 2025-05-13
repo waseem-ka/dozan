@@ -1,5 +1,4 @@
 import 'package:dozan/bloc/onboarding/onboarding_bloc.dart';
-import 'package:dozan/presentation/routes/app_routes.dart';
 import 'package:dozan/presentation/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

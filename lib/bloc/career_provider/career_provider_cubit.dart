@@ -22,8 +22,16 @@ class ProviderRegisterCubit extends Cubit<ProviderRegisterState> {
   }
 
   void register() {
-    // قم هنا بإرسال البيانات للسيرفر أو إجراء عملية التسجيل
-    debugPrint("Career: ${state.selectedCareer}");
-    debugPrint("Skills: ${state.selectedSkills}");
+    try {
+      // حاول تنفيذ عملية التسجيل هنا (مثل إرسال البيانات إلى السيرفر)
+      debugPrint("Career: ${state.selectedCareer}");
+      debugPrint("Skills: ${state.selectedSkills}");
+
+      // إذا كانت العملية ناجحة:
+      emit(RegisterSuccessState(message: 'Registration successful.'));
+    } catch (e) {
+      // إذا حدث خطأ:
+      emit(RegisterErrorState(errorMessage: 'Registration failed: $e'));
+    }
   }
 }

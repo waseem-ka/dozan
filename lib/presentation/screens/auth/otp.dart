@@ -27,14 +27,14 @@ class _OtpPageState extends State<OtpPage> {
       ),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: CostumColor.darkYallow, width: 2),
+          bottom: BorderSide(color: CustomColor.darkYallow, width: 2),
         ),
       ),
     );
 
     final focusedTheme = defaultTheme.copyWith(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: CostumColor.yallow, width: 3)),
+        border: Border(bottom: BorderSide(color: CustomColor.yallow, width: 3)),
       ),
     );
     return BlocProvider(
@@ -118,7 +118,7 @@ class _OtpPageState extends State<OtpPage> {
                       margin: const EdgeInsets.only(top: 20),
                       width: 42,
                       height: 0.5.h,
-                      color: CostumColor.yallow,
+                      color: CustomColor.yallow,
                     ),
                     onCompleted: (pin) {
                       debugPrint('Entered OTP: $pin');
@@ -133,7 +133,7 @@ class _OtpPageState extends State<OtpPage> {
                         Text(
                           "Didn’t you receive the OTP?",
                           style: TextStyle(
-                            color: CostumColor.grey,
+                            color: CustomColor.grey,
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
                           ),
@@ -143,7 +143,7 @@ class _OtpPageState extends State<OtpPage> {
                           child: Text(
                             "Resend OTP",
                             style: TextStyle(
-                              color: CostumColor.yallow,
+                              color: CustomColor.yallow,
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             ),

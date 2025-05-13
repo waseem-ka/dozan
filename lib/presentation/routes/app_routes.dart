@@ -1,3 +1,4 @@
+import 'package:dozan/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dozan/presentation/screens/home_screen.dart';
 import 'package:dozan/presentation/screens/onboarding.dart';
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String registerCustomer = '/registerCustomer';
   static const String registerProvider = '/registerProvider';
   static const String registerType = '/registerType';
+  static const splash = '/splash';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -37,7 +39,7 @@ class AppRoutes {
       case registerType:
         return MaterialPageRoute(builder: (_) => RegisterType());
       default:
-        return MaterialPageRoute(builder: (_) => HomeScreen()); // Default route
+        return MaterialPageRoute(builder: (_) => SplashScreen());
     }
   }
 }

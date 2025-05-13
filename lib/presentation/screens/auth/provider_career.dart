@@ -47,7 +47,19 @@ class ProviderRegisterPage extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-          child: BlocBuilder<ProviderRegisterCubit, ProviderRegisterState>(
+          child: BlocConsumer<ProviderRegisterCubit, ProviderRegisterState>(
+            listener: (context, state) {
+              if (state is RegisterSuccessState) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OtpPage()),
+                );
+              } else if (state is RegisterErrorState) {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+              }
+            },
             builder: (context, state) {
               final cubit = context.read<ProviderRegisterCubit>();
               return Column(
@@ -112,7 +124,7 @@ class ProviderRegisterPage extends StatelessWidget {
                             ),
                             shape: StadiumBorder(
                               side: BorderSide(
-                                color: CostumColor.darkYallow,
+                                color: CustomColor.darkYallow,
                                 width: 1.0,
                               ),
                             ),
@@ -124,11 +136,18 @@ class ProviderRegisterPage extends StatelessWidget {
                     child: CustomButton(
                       text: 'Register',
                       onPressed: () {
-                        cubit.register();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => OtpPage()),
-                        );
+                        if (state.selectedCareer == null ||
+                            state.selectedSkills.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "Please select a career and at least one skill.",
+                              ),
+                            ),
+                          );
+                        } else {
+                          cubit.register();
+                        }
                       },
                     ),
                   ),

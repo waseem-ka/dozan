@@ -1,3 +1,4 @@
+import 'package:dozan/Utils/strings.dart';
 import 'package:dozan/bloc/customer_register/customer_register_bloc.dart';
 import 'package:dozan/bloc/login/login_bloc.dart';
 import 'package:dozan/bloc/provider_register/provider_register_bloc.dart';
@@ -18,6 +19,7 @@ class RegisterProvider extends StatelessWidget {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController birthDateController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
@@ -127,6 +129,14 @@ class RegisterProvider extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: CustomTextField(
+                        controller: phoneNumberController,
+                        labelText: 'Phone Number',
+                        iconPath: 'assets/icons/call.svg',
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: CustomTextField(
                         controller: birthDateController,
                         labelText: 'Birth date',
                         iconPath: 'assets/icons/birtDate.svg',
@@ -154,7 +164,7 @@ class RegisterProvider extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: CustomTextField(
-                        controller: birthDateController,
+                        controller: locationController,
                         labelText: 'Address Title',
                         iconPath: 'assets/icons/location.svg',
                         secure: false,
@@ -185,16 +195,49 @@ class RegisterProvider extends StatelessWidget {
                       child: CustomButton(
                         text: "Register",
                         onPressed: () {
+                          if (firstNameController.text.isEmpty ||
+                              lastNameController.text.isEmpty ||
+                              userNameController.text.isEmpty ||
+                              phoneNumberController.text.isEmpty ||
+                              birthDateController.text.isEmpty ||
+                              passwordController.text.isEmpty ||
+                              rePasswordController.text.isEmpty ||
+                              locationController.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: CustomColor.darkYallow,
+                                content: Text(
+                                  'Please fill in all the fields.',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+
+                          // كلمات السر غير متطابقة
+                          if (passwordController.text !=
+                              rePasswordController.text) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Passwords do not match.'),
+                              ),
+                            );
+                            return;
+                          }
+
                           BlocProvider.of<ProviderRegisterBloc>(context).add(
                             SubmitProviderRegister(
-                              firstName: 'وسيم',
-                              lastName: 'قصقص',
-                              userName: 'waseem2025',
-                              phoneNumber: '0932123456',
-                              birthDate: DateTime(1997, 5, 1),
-                              password: '123456',
-                              reEnterPassword: '123456',
-                              address: 'دمشق - مشروع دمر',
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text,
+                              userName: userNameController.text,
+                              phoneNumber: phoneNumberController.text,
+                              birthDate:
+                                  DateTime.tryParse(birthDateController.text) ??
+                                  DateTime(2000),
+                              password: passwordController.text,
+                              reEnterPassword: rePasswordController.text,
+                              address: locationController.text,
                             ),
                           );
                         },

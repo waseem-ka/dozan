@@ -22,3 +22,22 @@ class ProviderRegisterState extends Equatable {
     );
   }
 }
+
+class RegisterSuccessState extends ProviderRegisterState {
+  final String
+  message; // يمكنك إضافة رسالة أو معلومات إضافية إذا كنت بحاجة إليها.
+
+  RegisterSuccessState({required this.message});
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class RegisterErrorState extends ProviderRegisterState {
+  final String errorMessage; // رسالة الخطأ التي سيتم عرضها
+
+  RegisterErrorState({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
+}

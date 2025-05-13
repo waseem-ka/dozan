@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dozan/bloc/login/login_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:dozan/Utils/strings.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -20,17 +21,19 @@ class LoginScreen extends StatelessWidget {
       child: Scaffold(
         body: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
-            print("asssss");
             if (state is LoginLoading) {
               print("isLoading");
-              // ممكن تعرض loading dialog
               showDialog(
                 context: context,
                 barrierDismissible: false,
-                builder: (_) => Center(child: CircularProgressIndicator()),
+                builder:
+                    (_) => Center(
+                      child: CircularProgressIndicator(
+                        color: CustomColor.yallow,
+                      ),
+                    ),
               );
             } else if (state is LoginSuccess) {
-              print("Login Success.");
               Navigator.of(context).pop(); // تغلق الـ loading dialog
               Navigator.of(
                 context,
@@ -40,8 +43,6 @@ class LoginScreen extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
-            } else {
-              print("nothing");
             }
           },
           builder:
@@ -165,7 +166,6 @@ class LoginScreen extends StatelessWidget {
                       child: CustomButton(
                         text: "Login",
                         onPressed: () {
-                          print("onPressed Custom Button");
                           context.read<LoginBloc>().add(
                             LoginSubmitted(
                               email: _emailController.text.trim(),
