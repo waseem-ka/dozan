@@ -41,6 +41,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         cursorColor: const Color.fromRGBO(242, 188, 37, 0.4),
         onChanged: widget.onChanged,
         decoration: InputDecoration(
+          border: InputBorder.none,
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Color.fromRGBO(246, 246, 246, 1)),
           ),

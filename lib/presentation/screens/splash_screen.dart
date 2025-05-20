@@ -1,4 +1,7 @@
 import 'package:dozan/Utils/strings.dart';
+import 'package:dozan/bloc/onboarding/onboarding_bloc.dart';
+import 'package:dozan/presentation/screens/onboarding.dart';
+import 'package:dozan/presentation/widget/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dozan/bloc/splash/splash_bloc.dart';
@@ -16,15 +19,21 @@ class SplashScreen extends StatelessWidget {
           Navigator.pushReplacementNamed(context, AppRoutes.home);
         } else if (state is SplashUnauthenticated) {
           print('SplashUnauthenticated');
-          Navigator.pushReplacementNamed(context, AppRoutes.login);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder:
+                  (context) => BlocProvider(
+                    create: (_) => OnboardingBloc(),
+                    child: OnboardingScreen(),
+                  ),
+            ),
+          );
         }
       },
       builder:
-          (context, state) => Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(color: CustomColor.yallow),
-            ),
-          ),
+          (context, state) =>
+              Scaffold(body: Center(child: SpinningImageLoader())),
     );
   }
 }

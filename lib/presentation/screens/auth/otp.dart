@@ -42,7 +42,7 @@ class _OtpPageState extends State<OtpPage> {
       child: BlocConsumer<OtpCubit, OtpState>(
         listener: (context, state) {
           if (state is OtpVerified) {
-            Navigator.pushReplacementNamed(context, '/home'); // أو أي اسم صفحة
+            Navigator.pushReplacementNamed(context, '/home');
           } else if (state is OtpError) {
             ScaffoldMessenger.of(
               context,
@@ -51,7 +51,6 @@ class _OtpPageState extends State<OtpPage> {
         },
         builder: (context, state) {
           final cubit = context.read<OtpCubit>();
-
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -71,113 +70,128 @@ class _OtpPageState extends State<OtpPage> {
                 ),
               ),
             ),
-            body: Padding(
-              padding: EdgeInsets.only(left: 24, right: 24),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Container(
-                      padding: EdgeInsets.only(top: 5),
-                      width: 204.w,
-                      height: 213.h,
-                      child: Image.asset('assets/images/OTP.png'),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(left: 24, right: 24),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 5),
+                        width: 204.w,
+                        height: 213.h,
+                        child: Image.asset('assets/images/OTP.png'),
+                      ),
                     ),
-                  ),
-                  Text(
-                    "OTP Verification",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w700,
+                    Text(
+                      "OTP Verification",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "We will send you one-time password to",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w400,
+                    Text(
+                      "We will send you one-time password to",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "to your mobile number",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w400,
+                    Text(
+                      "to your mobile number",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  Pinput(
-                    controller: cubit.otpController,
-                    length: 4,
-                    defaultPinTheme: defaultTheme,
-                    focusedPinTheme: focusedTheme,
-                    showCursor: true,
-                    cursor: Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      width: 42,
-                      height: 0.5.h,
-                      color: CustomColor.yallow,
+                    Pinput(
+                      controller: cubit.otpController,
+                      length: 4,
+                      defaultPinTheme: defaultTheme,
+                      focusedPinTheme: focusedTheme,
+                      showCursor: true,
+                      cursor: Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        width: 42,
+                        height: 0.5.h,
+                        color: CustomColor.yallow,
+                      ),
+                      onCompleted: (pin) {
+                        debugPrint('Entered OTP: $pin');
+                        cubit.onOtpChanged(pin);
+                      },
                     ),
-                    onCompleted: (pin) {
-                      debugPrint('Entered OTP: $pin');
-                      cubit.onOtpChanged(pin);
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Didn’t you receive the OTP?",
-                          style: TextStyle(
-                            color: CustomColor.grey,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Resend OTP",
+                    Padding(
+                      padding: EdgeInsets.only(top: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Didn’t you receive the OTP?",
                             style: TextStyle(
-                              color: CustomColor.yallow,
+                              color: CustomColor.grey,
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ),
-                      ],
+                          TextButton(
+                            onPressed: () {
+                              cubit.resendOtp();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Resend OTP Done")),
+                              );
+                            },
+                            child: Text(
+                              "Resend OTP",
+                              style: TextStyle(
+                                color: CustomColor.yallow,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 50.0),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size(342.w, 40.h),
-                        backgroundColor:
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50.0),
+                      child: ElevatedButton(
+                        onPressed:
                             cubit.otpController.text.length == 4
-                                ? const Color.fromRGBO(242, 188, 37, 1)
-                                : Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(1.r),
+                                ? () {
+                                  cubit.verifyOtp(
+                                    cubit.otpController.text,
+                                  ); // التحقق من الكود المدخل
+                                }
+                                : null, // تعطيل الزر إذا لم يتم إدخال 4 أرقام
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(342.w, 40.h),
+                          backgroundColor:
+                              cubit.otpController.text.length == 4
+                                  ? const Color.fromRGBO(242, 188, 37, 1)
+                                  : Colors
+                                      .grey, // تغيير اللون إذا لم يكن الكود صحيحًا
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(1.r),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        "Verify",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.sp,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.w700,
+                        child: Text(
+                          "Verify",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.sp,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

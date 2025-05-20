@@ -16,7 +16,7 @@ class OtpCubit extends Cubit<OtpState> {
     // افتراضياً، الكود الصح هو "1234" للتجريب
     Future.delayed(Duration(seconds: 2), () {
       if (enteredCode == '1234') {
-        print("Verified");
+        debugPrint("Verified");
         emit(OtpVerified());
       } else {
         emit(OtpError('Invalid verification code'));
@@ -25,6 +25,9 @@ class OtpCubit extends Cubit<OtpState> {
   }
 
   void resendOtp() {
-    emit(OtpResent());
+    emit(OtpLoading());
+    Future.delayed(Duration(seconds: 2), () {
+      emit(OtpResent());
+    });
   }
 }

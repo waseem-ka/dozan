@@ -1,4 +1,3 @@
-import 'package:dozan/services/shared_preferences_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,8 +11,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   Future<bool> isLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
-    print("oooo");
-    print(prefs.getBool('isLoggedIn'));
     return prefs.getBool('isLoggedIn') ?? false;
   }
 

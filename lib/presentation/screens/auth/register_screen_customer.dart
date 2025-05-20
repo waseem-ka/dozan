@@ -1,4 +1,5 @@
 import 'package:dozan/bloc/customer_register/customer_register_bloc.dart';
+import 'package:dozan/bloc/customer_register/customer_register_event.dart';
 import 'package:dozan/bloc/customer_register/customer_register_state.dart';
 import 'package:dozan/bloc/login/login_bloc.dart';
 import 'package:dozan/bloc/register_type/register_type_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:dozan/presentation/screens/auth/login_screen.dart';
 import 'package:dozan/presentation/screens/auth/otp.dart';
 import 'package:dozan/presentation/widget/custom_button.dart';
 import 'package:dozan/presentation/widget/custom_text_field.dart';
+import 'package:dozan/presentation/widget/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +43,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
             showDialog(
               context: context,
               barrierDismissible: false,
-              builder: (_) => Center(child: CircularProgressIndicator()),
+              builder: (_) => Center(child: SpinningImageLoader()),
             );
           } else if (state is CustomerRegisterLoaded) {
             Navigator.pop(context); // remove loading
@@ -76,161 +78,168 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                 ),
               ),
             ),
-            body: SafeArea(
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 24, right: 24),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Customer registration ",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 24.sp,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w700,
+            body: SingleChildScrollView(
+              child: SafeArea(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 24, right: 24),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Customer registration ",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 24.sp,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Please register to login.",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14.sp,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.w400,
+                                Text(
+                                  "Please register to login.",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14.sp,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                        child: CustomTextField(
-                          controller: firstNameController,
-                          labelText: 'First name',
-                          iconPath: 'assets/icons/user2.svg',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 2.0),
-                        child: CustomTextField(
-                          controller: lastNameController,
-                          labelText: 'Last name',
-                          iconPath: 'assets/icons/user2.svg',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: CustomTextField(
-                          controller: userNameController,
-                          labelText: 'User name',
-                          iconPath: 'assets/icons/user1.svg',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: CustomTextField(
-                          controller: birthDateController,
-                          labelText: 'Birth date',
-                          iconPath: 'assets/icons/birtDate.svg',
-                          secure: false,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: CustomTextField(
-                          controller: passwordController,
-                          labelText: 'Enter Password',
-                          iconPath: 'assets/icons/password.svg',
-                          secure: true,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: CustomTextField(
-                          controller: rePasswordController,
-                          labelText: 'Re-enter Password',
-                          iconPath: 'assets/icons/password.svg',
-                          secure: true,
-                        ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Checkbox(
-                            activeColor: Color.fromRGBO(143, 106, 1, 1),
-                            value: (true),
-                            onChanged: (value) {},
-                          ),
-                          Text(
-                            "I agree to terms of use",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12.sp,
-                              fontFamily: 'Cairo',
-                              fontWeight: FontWeight.w700,
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: CustomButton(
-                          text: "Register",
-                          onPressed: () {
-                            context.read<RegisterTypeBloc>().add(
-                              RegisterTypeSelected('Customer'),
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) => BlocProvider(
-                                      create: (_) => CustomerRegisterBloc(),
-                                      child: OtpPage(),
-                                    ),
-                              ),
-                            );
-                          },
+                          ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Registered already?"),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (context) => BlocProvider(
-                                        create: (_) => LoginBloc(),
-                                        child: LoginScreen(),
-                                      ),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Login",
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                          child: CustomTextField(
+                            controller: firstNameController,
+                            labelText: 'First name',
+                            iconPath: 'assets/icons/user2.svg',
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0),
+                          child: CustomTextField(
+                            controller: lastNameController,
+                            labelText: 'Last name',
+                            iconPath: 'assets/icons/user2.svg',
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: CustomTextField(
+                            controller: userNameController,
+                            labelText: 'User name',
+                            iconPath: 'assets/icons/user1.svg',
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: CustomTextField(
+                            controller: birthDateController,
+                            labelText: 'Birth date',
+                            iconPath: 'assets/icons/birtDate.svg',
+                            secure: false,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: CustomTextField(
+                            controller: passwordController,
+                            labelText: 'Enter Password',
+                            iconPath: 'assets/icons/password.svg',
+                            secure: true,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: CustomTextField(
+                            controller: rePasswordController,
+                            labelText: 'Re-enter Password',
+                            iconPath: 'assets/icons/password.svg',
+                            secure: true,
+                          ),
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Checkbox(
+                              activeColor: Color.fromRGBO(143, 106, 1, 1),
+                              value: (true),
+                              onChanged: (value) {},
+                            ),
+                            Text(
+                              "I agree to terms of use",
                               style: TextStyle(
-                                color: Color(0xFFE6AA00),
+                                color: Colors.black,
                                 fontSize: 12.sp,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: CustomButton(
+                            text: "Register",
+                            onPressed: () {
+                              final bloc = context.read<CustomerRegisterBloc>();
+
+                              bloc.add(
+                                SubmitCustomerRegister(
+                                  firstName: firstNameController.text.trim(),
+                                  lastName: lastNameController.text.trim(),
+                                  userName: userNameController.text.trim(),
+                                  phoneNumber:
+                                      "0933333333", // مؤقت، غيره لاحقًا إذا بدك
+                                  birthDate:
+                                      DateTime.tryParse(
+                                        birthDateController.text.trim(),
+                                      ) ??
+                                      DateTime.now(),
+                                  password: passwordController.text,
+                                  reEnterPassword: rePasswordController.text,
+                                ),
+                              );
+                            },
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Registered already?"),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => BlocProvider(
+                                          create: (_) => LoginBloc(),
+                                          child: LoginScreen(),
+                                        ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: Color(0xFFE6AA00),
+                                  fontSize: 12.sp,
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
