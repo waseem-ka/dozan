@@ -1,3 +1,4 @@
+import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/Utils/strings.dart';
 import 'package:dozan/bloc/career_provider/career_provider_cubit.dart';
 import 'package:dozan/presentation/screens/auth/otp.dart';
@@ -40,7 +41,7 @@ class ProviderRegisterPage extends StatelessWidget {
                 margin: EdgeInsets.all(5),
                 width: 24.w,
                 height: 24.h,
-                child: SvgPicture.asset("assets/icons/arrow-left.svg"),
+                child: SvgPicture.asset(Paths().arrowLeft),
               ),
             ),
           ),
@@ -84,7 +85,7 @@ class ProviderRegisterPage extends StatelessWidget {
                     ),
                   ),
                   DropdownButton<String>(
-                    icon: SvgPicture.asset("assets/icons/arrow-right.svg"),
+                    icon: SvgPicture.asset(Paths().arrowRight),
                     value: state.selectedCareer,
                     hint: Text('Select career'),
                     isExpanded: true,

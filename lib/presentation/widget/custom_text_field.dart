@@ -1,3 +1,4 @@
+import 'package:dozan/Utils/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -68,7 +69,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       margin: EdgeInsets.all(8),
                       width: 20.w,
                       height: 20.h,
-                      child: SvgPicture.asset("assets/icons/eye-slash.svg"),
+                      child: SvgPicture.asset(Paths().eyeSlash),
                     ),
                     onTap: () {
                       setState(() {

@@ -1,5 +1,5 @@
-import 'package:dozan/Utils/strings.dart';
 import 'package:dozan/bloc/onboarding/onboarding_bloc.dart';
+import 'package:dozan/presentation/screens/navigation/main_navigation_screen.dart';
 import 'package:dozan/presentation/screens/onboarding.dart';
 import 'package:dozan/presentation/widget/logo.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,9 @@ class SplashScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is SplashAuthenticated) {
           print('SplashAuthenticated');
-          Navigator.pushReplacementNamed(context, AppRoutes.home);
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => MainNavigationScreen()),
+          );
         } else if (state is SplashUnauthenticated) {
           print('SplashUnauthenticated');
           Navigator.pushReplacement(

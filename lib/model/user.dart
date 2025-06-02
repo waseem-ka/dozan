@@ -47,24 +47,16 @@ class Provider extends User {
   final List<String> skills;
 
   Provider({
-    required int id,
-    required String firstName,
-    required String lastName,
-    required String username,
-    required String phoneNumber,
-    required DateTime birthDate,
-    required String password,
+    required super.id,
+    required super.firstName,
+    required super.lastName,
+    required super.username,
+    required super.phoneNumber,
+    required super.birthDate,
+    required super.password,
     required this.career,
     required this.skills,
-  }) : super(
-         id: id,
-         firstName: firstName,
-         lastName: lastName,
-         username: username,
-         phoneNumber: phoneNumber,
-         birthDate: birthDate,
-         password: password,
-       );
+  });
 
   @override
   Map<String, dynamic> toJson() {

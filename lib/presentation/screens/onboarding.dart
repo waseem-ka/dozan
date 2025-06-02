@@ -1,3 +1,4 @@
+import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/bloc/onboarding/onboarding_bloc.dart';
 import 'package:dozan/presentation/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,20 +16,20 @@ class OnboardingScreen extends StatelessWidget {
 
     final List<Widget> onboardingPages = [
       onboard(
-        imagePath: 'assets/images/onboarding1.png',
+        imagePath: Paths().onboarding1,
         title: 'All maintenance services in\none application',
         subtitle:
             'No need to search a lot, Dozan brings\ntogether all home and office maintenance\nservices in one place.',
       ),
       onboard(
-        imagePath: 'assets/images/onboarding2.png',
+        imagePath: Paths().onboarding2,
         title:
             'Take pictures of the problem\n and let the technicians \nrespond to you.',
         subtitle:
             'Just take a video of the fault and get\n quotes from nearby technicians.',
       ),
       onboard(
-        imagePath: 'assets/images/onboarding3.png',
+        imagePath: Paths().onboarding3,
         title: 'Express service, depending on \nlocation',
         subtitle:
             'Dozan connects you with technicians \nnear you, based on your location, quickly.',

@@ -1,3 +1,4 @@
+import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/bloc/customer_register/customer_register_bloc.dart';
 import 'package:dozan/bloc/provider_register/provider_register_bloc.dart';
 import 'package:dozan/bloc/register_type/register_type_bloc.dart';
@@ -30,7 +31,7 @@ class RegisterType extends StatelessWidget {
                 margin: EdgeInsets.all(5),
                 width: 24.w,
                 height: 24.h,
-                child: SvgPicture.asset("assets/icons/arrow-left.svg"),
+                child: SvgPicture.asset(Paths().arrowLeft),
               ),
             ),
           ),
@@ -72,7 +73,7 @@ class RegisterType extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: Image.asset(
-                        "assets/images/registerType.png",
+                        Paths().registerTypeImage,
                         width: 270.w,
                         height: 300.h,
                       ),

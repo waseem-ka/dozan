@@ -1,3 +1,4 @@
+import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/Utils/strings.dart';
 import 'package:dozan/bloc/customer_register/customer_register_bloc.dart';
 import 'package:dozan/bloc/login/login_bloc.dart';
@@ -41,7 +42,7 @@ class RegisterProvider extends StatelessWidget {
               margin: EdgeInsets.all(5),
               width: 24.w,
               height: 24.h,
-              child: SvgPicture.asset("assets/icons/arrow-left.svg"),
+              child: SvgPicture.asset(Paths().arrowLeft),
             ),
           ),
         ),
@@ -108,7 +109,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: firstNameController,
                           labelText: 'First name',
-                          iconPath: 'assets/icons/user2.svg',
+                          iconPath: Paths().user2,
                         ),
                       ),
                       Padding(
@@ -116,7 +117,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: lastNameController,
                           labelText: 'Last name',
-                          iconPath: 'assets/icons/user2.svg',
+                          iconPath: Paths().user2,
                         ),
                       ),
                       Padding(
@@ -124,7 +125,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: userNameController,
                           labelText: 'User name',
-                          iconPath: 'assets/icons/user1.svg',
+                          iconPath: Paths().user1,
                         ),
                       ),
                       Padding(
@@ -132,7 +133,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: phoneNumberController,
                           labelText: 'Phone Number',
-                          iconPath: 'assets/icons/call.svg',
+                          iconPath: Paths().call,
                         ),
                       ),
                       Padding(
@@ -140,7 +141,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: birthDateController,
                           labelText: 'Birth date',
-                          iconPath: 'assets/icons/birtDate.svg',
+                          iconPath: Paths().birtDate,
                           secure: false,
                         ),
                       ),
@@ -149,7 +150,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: passwordController,
                           labelText: 'Enter Password',
-                          iconPath: 'assets/icons/password.svg',
+                          iconPath: Paths().password,
                           secure: true,
                         ),
                       ),
@@ -158,7 +159,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: rePasswordController,
                           labelText: 'Re-enter Password',
-                          iconPath: 'assets/icons/password.svg',
+                          iconPath: Paths().password,
                           secure: true,
                         ),
                       ),
@@ -167,7 +168,7 @@ class RegisterProvider extends StatelessWidget {
                         child: CustomTextField(
                           controller: locationController,
                           labelText: 'Address Title',
-                          iconPath: 'assets/icons/location.svg',
+                          iconPath: Paths().location,
                           secure: false,
                         ),
                       ),

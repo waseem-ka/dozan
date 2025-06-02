@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SpinningImageLoader extends StatefulWidget {
+  const SpinningImageLoader({super.key});
+
   @override
   _SpinningImageLoaderState createState() => _SpinningImageLoaderState();
 }

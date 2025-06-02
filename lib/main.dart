@@ -1,5 +1,6 @@
 import 'package:dozan/bloc/splash/splash_bloc.dart';
 import 'package:dozan/presentation/routes/app_routes.dart';
+import 'package:dozan/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   SharedPreferences.getInstance;
+  setupServiceLocator();
   runApp(MyApp());
 }
 

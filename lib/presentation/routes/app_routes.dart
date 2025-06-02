@@ -1,6 +1,6 @@
 import 'package:dozan/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:dozan/presentation/screens/home_screen.dart';
+import 'package:dozan/presentation/screens/pages/home_screen.dart';
 import 'package:dozan/presentation/screens/onboarding.dart';
 import 'package:dozan/presentation/screens/auth/login_screen.dart';
 import 'package:dozan/presentation/screens/auth/otp.dart';
@@ -18,7 +18,7 @@ class AppRoutes {
   static const String registerCustomer = '/registerCustomer';
   static const String registerProvider = '/registerProvider';
   static const String registerType = '/registerType';
-  static const splash = '/splash';
+  static const String splash = '/splash';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {

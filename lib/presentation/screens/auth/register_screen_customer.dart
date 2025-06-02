@@ -1,8 +1,8 @@
+import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/bloc/customer_register/customer_register_bloc.dart';
 import 'package:dozan/bloc/customer_register/customer_register_event.dart';
 import 'package:dozan/bloc/customer_register/customer_register_state.dart';
 import 'package:dozan/bloc/login/login_bloc.dart';
-import 'package:dozan/bloc/register_type/register_type_bloc.dart';
 import 'package:dozan/presentation/screens/auth/login_screen.dart';
 import 'package:dozan/presentation/screens/auth/otp.dart';
 import 'package:dozan/presentation/widget/custom_button.dart';
@@ -28,6 +28,8 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
   final TextEditingController userNameController = TextEditingController();
 
   final TextEditingController birthDateController = TextEditingController();
+
+  final TextEditingController phoneNumberController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
 
@@ -73,7 +75,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                     margin: EdgeInsets.all(5),
                     width: 24.w,
                     height: 24.h,
-                    child: SvgPicture.asset("assets/icons/arrow-left.svg"),
+                    child: SvgPicture.asset(Paths().arrowLeft),
                   ),
                 ),
               ),
@@ -117,7 +119,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           child: CustomTextField(
                             controller: firstNameController,
                             labelText: 'First name',
-                            iconPath: 'assets/icons/user2.svg',
+                            iconPath: Paths().user2,
                           ),
                         ),
                         Padding(
@@ -125,7 +127,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           child: CustomTextField(
                             controller: lastNameController,
                             labelText: 'Last name',
-                            iconPath: 'assets/icons/user2.svg',
+                            iconPath: Paths().user2,
                           ),
                         ),
                         Padding(
@@ -133,7 +135,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           child: CustomTextField(
                             controller: userNameController,
                             labelText: 'User name',
-                            iconPath: 'assets/icons/user1.svg',
+                            iconPath: Paths().user1,
                           ),
                         ),
                         Padding(
@@ -141,7 +143,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           child: CustomTextField(
                             controller: birthDateController,
                             labelText: 'Birth date',
-                            iconPath: 'assets/icons/birtDate.svg',
+                            iconPath: Paths().birtDate,
                             secure: false,
                           ),
                         ),
@@ -150,7 +152,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           child: CustomTextField(
                             controller: passwordController,
                             labelText: 'Enter Password',
-                            iconPath: 'assets/icons/password.svg',
+                            iconPath: Paths().password,
                             secure: true,
                           ),
                         ),
@@ -159,7 +161,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                           child: CustomTextField(
                             controller: rePasswordController,
                             labelText: 'Re-enter Password',
-                            iconPath: 'assets/icons/password.svg',
+                            iconPath: Paths().password,
                             secure: true,
                           ),
                         ),
@@ -196,7 +198,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                                   lastName: lastNameController.text.trim(),
                                   userName: userNameController.text.trim(),
                                   phoneNumber:
-                                      "0933333333", // مؤقت، غيره لاحقًا إذا بدك
+                                      phoneNumberController.text.trim(),
                                   birthDate:
                                       DateTime.tryParse(
                                         birthDateController.text.trim(),

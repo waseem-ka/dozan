@@ -1,6 +1,7 @@
 import 'package:dozan/bloc/register_type/register_type_bloc.dart';
 import 'package:dozan/presentation/routes/app_routes.dart';
 import 'package:dozan/presentation/screens/auth/register_type.dart';
+import 'package:dozan/presentation/screens/navigation/main_navigation_screen.dart';
 import 'package:dozan/presentation/widget/custom_button.dart';
 import 'package:dozan/presentation/widget/logo.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dozan/bloc/login/login_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:dozan/Utils/strings.dart';
+import 'package:dozan/Utils/paths.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -30,12 +31,12 @@ class LoginScreen extends StatelessWidget {
                 builder: (_) => Center(child: SpinningImageLoader()),
               );
             } else if (state is LoginSuccess) {
-              Navigator.of(context).pop(); // تغلق الـ loading dialog
-              Navigator.of(
-                context,
-              ).pushReplacementNamed(AppRoutes.home); // مثلاً
+              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => MainNavigationScreen()),
+              );
             } else if (state is LoginError) {
-              Navigator.of(context).pop(); // تغلق الـ loading dialog
+              Navigator.of(context).pop();
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
@@ -50,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 80.0, bottom: 55),
                         child: Image.asset(
-                          "assets/images/login.png",
+                          Paths().loginImage,
                           width: 251.w,
                           height: 196.h,
                         ),

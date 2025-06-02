@@ -1,3 +1,4 @@
+import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/Utils/strings.dart';
 import 'package:dozan/bloc/otp/otp_cubit.dart';
 import 'package:dozan/bloc/otp/otp_state.dart';
@@ -65,7 +66,7 @@ class _OtpPageState extends State<OtpPage> {
                     margin: EdgeInsets.all(5),
                     width: 24.w,
                     height: 24.h,
-                    child: SvgPicture.asset("assets/icons/arrow-left.svg"),
+                    child: SvgPicture.asset(Paths().arrowLeft),
                   ),
                 ),
               ),
@@ -81,7 +82,7 @@ class _OtpPageState extends State<OtpPage> {
                         padding: EdgeInsets.only(top: 5),
                         width: 204.w,
                         height: 213.h,
-                        child: Image.asset('assets/images/OTP.png'),
+                        child: Image.asset(Paths().otpImage),
                       ),
                     ),
                     Text(

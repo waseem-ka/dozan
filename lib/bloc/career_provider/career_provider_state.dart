@@ -27,7 +27,7 @@ class RegisterSuccessState extends ProviderRegisterState {
   final String
   message; // يمكنك إضافة رسالة أو معلومات إضافية إذا كنت بحاجة إليها.
 
-  RegisterSuccessState({required this.message});
+  const RegisterSuccessState({required this.message});
 
   @override
   List<Object?> get props => [message];
@@ -36,7 +36,7 @@ class RegisterSuccessState extends ProviderRegisterState {
 class RegisterErrorState extends ProviderRegisterState {
   final String errorMessage; // رسالة الخطأ التي سيتم عرضها
 
-  RegisterErrorState({required this.errorMessage});
+  const RegisterErrorState({required this.errorMessage});
 
   @override
   List<Object?> get props => [errorMessage];
