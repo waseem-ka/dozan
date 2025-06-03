@@ -51,4 +51,7 @@ class Paths {
   final service11 = 'assets/icons/homePageIcons/roads.png';
   final service12 = 'assets/icons/homePageIcons/solar-panel.png';
   final service13 = 'assets/icons/homePageIcons/tool.png';
+
+  //offers image
+  final offerImage = 'assets/images/offer.png';
 }

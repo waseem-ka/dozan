@@ -5,7 +5,6 @@ import 'package:dozan/presentation/widget/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dozan/bloc/splash/splash_bloc.dart';
-import 'package:dozan/presentation/routes/app_routes.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -15,12 +14,12 @@ class SplashScreen extends StatelessWidget {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is SplashAuthenticated) {
-          print('SplashAuthenticated');
+          debugPrint('SplashAuthenticated');
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => MainNavigationScreen()),
           );
         } else if (state is SplashUnauthenticated) {
-          print('SplashUnauthenticated');
+          debugPrint('SplashUnauthenticated');
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(

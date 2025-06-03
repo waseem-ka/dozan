@@ -1,3 +1,4 @@
+import 'package:dozan/bloc/offers/offers_bloc.dart';
 import 'package:dozan/services/HomeRepository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dozan/bloc/home_bloc/home_bloc.dart';
@@ -12,4 +13,9 @@ void setupServiceLocator() {
   getIt.registerFactory<HomeBloc>(
     () => HomeBloc(homeRepository: getIt<HomeRepository>()),
   );
+}
+
+// offer page getter
+void setupDI() {
+  getIt.registerLazySingleton<OffersBloc>(() => OffersBloc());
 }

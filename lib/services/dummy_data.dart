@@ -45,4 +45,58 @@ class DummyData {
     {'icon': Paths().service12, 'label': 'Solar Energy'},
     {'icon': Paths().service13, 'label': 'Appliances'},
   ];
+
+  //Offer Sent dummy data
+  final List<Map<String, dynamic>> sentOffers = [
+    {
+      'serviceType': 'Cooling Services',
+      'apartmentSize': '100 m',
+      'location': 'Mazzeh, Damascus',
+      'requestedDate': '2025-06-10',
+      'arrivalTime': '10:00 AM',
+      'paymentMethod': 'Cash',
+      'status': 'Searching',
+      'image': Paths().offerImage,
+    },
+    {
+      'serviceType': 'Painting',
+      'apartmentSize': '120 m',
+      'location': 'Bab Touma, Damascus',
+      'requestedDate': '2025-06-12',
+      'arrivalTime': '02:30 PM',
+      'paymentMethod': 'Electronic',
+      'status': 'Offer',
+      'image': Paths().offerImage,
+    },
+    {
+      'serviceType': 'Electric',
+      'apartmentSize': '80 m',
+      'location': 'Jaramana, Rural Damascus',
+      'requestedDate': '2025-06-15',
+      'arrivalTime': '09:00 AM',
+      'paymentMethod': 'Cash',
+      'status': 'On the way',
+      'image': Paths().offerImage,
+    },
+    {
+      'serviceType': 'Appliances',
+      'apartmentSize': '90 m',
+      'location': 'Mashrou Dummar, Damascus',
+      'requestedDate': '2025-06-16',
+      'arrivalTime': '11:00 AM',
+      'paymentMethod': 'Electronic',
+      'status': 'In progress',
+      'image': Paths().offerImage,
+    },
+    {
+      'serviceType': 'Furniture',
+      'apartmentSize': '60 m',
+      'location': 'Salhieh, Damascus',
+      'requestedDate': '2025-06-17',
+      'arrivalTime': '04:00 PM',
+      'paymentMethod': 'Cash',
+      'status': 'Done',
+      'image': Paths().offerImage,
+    },
+  ];
 }

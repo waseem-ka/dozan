@@ -1,5 +1,4 @@
 import 'package:dozan/bloc/register_type/register_type_bloc.dart';
-import 'package:dozan/presentation/routes/app_routes.dart';
 import 'package:dozan/presentation/screens/auth/register_type.dart';
 import 'package:dozan/presentation/screens/navigation/main_navigation_screen.dart';
 import 'package:dozan/presentation/widget/custom_button.dart';
@@ -24,7 +23,7 @@ class LoginScreen extends StatelessWidget {
         body: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginLoading) {
-              print("isLoading");
+              debugPrint("isLoading");
               showDialog(
                 context: context,
                 barrierDismissible: false,

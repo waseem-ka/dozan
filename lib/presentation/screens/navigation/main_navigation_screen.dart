@@ -2,6 +2,7 @@ import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/Utils/strings.dart';
 import 'package:dozan/bloc/home_bloc/home_bloc.dart';
 import 'package:dozan/bloc/home_bloc/home_event.dart';
+import 'package:dozan/bloc/offers/offers_bloc.dart';
 import 'package:dozan/presentation/screens/pages/home_screen.dart';
 import 'package:dozan/presentation/screens/pages/notifications_page.dart';
 import 'package:dozan/presentation/screens/pages/orders_page.dart';
@@ -26,7 +27,7 @@ class MainNavigationScreen extends StatelessWidget {
                   ..add(LoadHomeData()),
         child: const HomeScreen(),
       ),
-      const OrdersPage(),
+      BlocProvider(create: (context) => OffersBloc(), child: OffersPage()),
       const NotificationsPage(),
       const Profile(),
     ];

@@ -39,7 +39,7 @@ class RegisterType extends StatelessWidget {
         body: BlocConsumer<RegisterTypeBloc, RegisterTypeState>(
           listener: (context, state) {
             if (state.selectedType == 'Customer') {
-              print("Costumer Type selected");
+              debugPrint("Costumer Type selected");
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -51,7 +51,7 @@ class RegisterType extends StatelessWidget {
                 ),
               );
             } else if (state.selectedType == 'Provider') {
-              print("Provider Type Selected");
+              debugPrint("Provider Type Selected");
               Navigator.push(
                 context,
                 MaterialPageRoute(

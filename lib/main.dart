@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:dozan/bloc/splash/splash_bloc.dart';
 import 'package:dozan/presentation/routes/app_routes.dart';
 import 'package:dozan/services/service_locator.dart';
@@ -9,7 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   SharedPreferences.getInstance;
   setupServiceLocator();
-  runApp(MyApp());
+  setupDI();
+  runApp(DevicePreview(enabled: true, builder: (context) => MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,6 +27,8 @@ class MyApp extends StatelessWidget {
         return BlocProvider(
           create: (context) => SplashBloc()..add(CheckLoginStatus()),
           child: MaterialApp(
+            locale: DevicePreview.locale(context), // ⬅️ ضروري
+            builder: DevicePreview.appBuilder, // ⬅️ ضروري
             debugShowCheckedModeBanner: false,
             initialRoute: AppRoutes.splash,
             onGenerateRoute: AppRoutes.generateRoute,

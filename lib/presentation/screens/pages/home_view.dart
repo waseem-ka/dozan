@@ -3,16 +3,11 @@ import 'package:dozan/Utils/paths.dart';
 import 'package:dozan/Utils/strings.dart';
 import 'package:dozan/bloc/home_bloc/home_bloc.dart';
 import 'package:dozan/bloc/home_bloc/home_state.dart';
-import 'package:dozan/bloc/login/login_bloc.dart';
-import 'package:dozan/presentation/screens/auth/login_screen.dart';
-import 'package:dozan/presentation/widget/custom_button.dart';
 import 'package:dozan/presentation/widget/logo.dart';
-import 'package:dozan/services/dummy_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -111,7 +106,7 @@ class _HomeViewState extends State<HomeView> {
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topRight,
                                   colors: [
-                                    Colors.black.withOpacity(0.7),
+                                    Colors.black.withAlpha((0.7 * 255).toInt()),
                                     Colors.transparent,
                                   ],
                                 ),

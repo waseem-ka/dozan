@@ -4,10 +4,10 @@ class SpinningImageLoader extends StatefulWidget {
   const SpinningImageLoader({super.key});
 
   @override
-  _SpinningImageLoaderState createState() => _SpinningImageLoaderState();
+  SpinningImageLoaderState createState() => SpinningImageLoaderState();
 }
 
-class _SpinningImageLoaderState extends State<SpinningImageLoader>
+class SpinningImageLoaderState extends State<SpinningImageLoader>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

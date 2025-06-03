@@ -133,7 +133,7 @@ class OnboardingScreen extends StatelessWidget {
             right: 53.w,
             child: ElevatedButton(
               onPressed: () {
-                print(bloc.state.currentPage);
+                debugPrint("${bloc.state.currentPage}");
                 if (bloc.state.currentPage == 2) {
                   bloc.add(CompleteOnboarding());
                   Navigator.of(context).pushReplacement(
